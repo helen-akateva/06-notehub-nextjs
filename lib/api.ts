@@ -14,11 +14,13 @@ interface CreateNoteData {
 
 interface FetchNotesParams {
   search?: string;
-  tag?: string;
+  tag?: NoteTag;
   page?: number;
   perPage?: number;
-  sortBy?: string;
+  sortBy?: SortBy;
 }
+
+type SortBy = "title" | "createdAt" | "updatedAt";
 
 const BASE_URL = "https://notehub-public.goit.study/api";
 axios.defaults.baseURL = BASE_URL;
@@ -54,7 +56,7 @@ export async function deleteNote(id: string): Promise<void> {
   });
 }
 
-export async function getNoteById(id:string) {
+export async function getNoteById(id: string): Promise<Note> {
   const res = await axios.get<Note>(`/notes/${id}`, {
     headers: {
       Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
