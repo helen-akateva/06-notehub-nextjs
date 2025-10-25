@@ -1,6 +1,6 @@
 "use client";
 
-import { getNoteById } from "@/libs/api";
+import { getNoteById } from "@/lib/api";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import css from './NoteDetails.module.css';
