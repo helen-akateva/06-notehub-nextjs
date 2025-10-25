@@ -53,3 +53,12 @@ export async function deleteNote(id: string): Promise<void> {
     },
   });
 }
+
+export async function getNoteById(id:string) {
+  const res = await axios.get<Note>(`/notes/${id}`, {
+    headers: {
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
+    },
+  });
+  return res.data;
+}
